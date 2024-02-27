@@ -35,7 +35,7 @@ interface Props {
 
 export const AppContextProvider = ({ children } :Props) => {
     // notices states
-    const { controller: noticeController, dispatch: dspatchNotice, state: notices } = useNotice();
+    const { controller: noticeController, dispatch: dispatchNotice, state: notices } = useNotice();
 
     // user states
     const [user, dispatchUser] = useReducer(userReducer, undefined);
@@ -62,7 +62,7 @@ export const AppContextProvider = ({ children } :Props) => {
         },
         reducers: {
             user: dispatchUser,
-            notice: dspatchNotice
+            notice: dispatchNotice
         }
     };
 
@@ -98,6 +98,4 @@ export const AppContextProvider = ({ children } :Props) => {
     )
 };
 
-export const useAppContext = () => {
-    return useContext(appContext);
-}
+export const useAppContext = () => useContext(appContext);
