@@ -1,5 +1,6 @@
 "use client";
 
+import MainLayout from "@/components/layouts";
 import { useAppContext } from "@/states";
 import Image from "next/image";
 
@@ -13,8 +14,8 @@ export default function Home() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <MainLayout>
             <button className="btn" onClick={handleClick}>test notify</button>
-        </main>
+        </MainLayout>
     );
 }

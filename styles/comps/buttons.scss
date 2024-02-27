@@ -1,5 +1,9 @@
 .btn {
-    @apply text-white font-semibold transition-all bg-primary border rounded-full p-2 px-8 cursor-pointer capitalize
+    @apply text-white font-semibold transition-all bg-primary border rounded-full p-2 px-8 cursor-pointer capitalize flex items-center
     hover:bg-white hover:text-gray-900
     disabled:bg-gray-400 disabled:text-gray-700 disabled:cursor-not-allowed;
+
+    &.btn-small {
+        @apply text-sm p-2 px-4
+    }
 }
