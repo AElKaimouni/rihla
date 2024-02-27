@@ -1,0 +1,5 @@
+.btn {
+    @apply text-white font-semibold transition-all bg-primary border rounded-full p-2 px-8 cursor-pointer capitalize
+    hover:bg-white hover:text-gray-900
+    disabled:bg-gray-400 disabled:text-gray-700 disabled:cursor-not-allowed;
+}
