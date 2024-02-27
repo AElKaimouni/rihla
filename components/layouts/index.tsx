@@ -15,7 +15,7 @@ const tabs = [
         Icon: FaHome
     },
     {
-        title: "Matches",
+        title: "CAF 2025",
         link: "/matches",
         Icon: IoMdFootball
     },
@@ -40,18 +40,17 @@ export default function MainLayout({ children, className, ...props } : Props) {
     
 
     return (
-        <main  className={`flex flex-col h-screen `}>
-            <div {...props} className={`grow bg-background ${className || ""}`}>
+        <main  className={`flex flex-col h-screen`}>
+            <div {...props} className={`grow overflow-auto bg-background ${className || ""}`}>
                 {children}
             </div>
             <div className="flex">
                 {tabs.map((tab, index) => (
-                    <Link key={index} href={tab.link} className={`p-4 basis-1/4 flex flex-col items-center border ${pathname === tab.link ? "bg-primary text-gray-100" : "text-gray-600"}`}>
-                        <tab.Icon />
-                        <h5>{tab.title}</h5>
+                    <Link key={index} href={tab.link} className={`p-2 basis-1/4 flex flex-col items-center border ${pathname === tab.link ? "bg-primary text-gray-100" : "text-gray-600"}`}>
+                        <tab.Icon size={24} />
+                        <h5 className="text-sm mt-1">{tab.title}</h5>
                     </Link>
                 ))}
-                
             </div>
         </main>
     );

@@ -1,62 +1,60 @@
 "use client";
-import { useAppContext } from "@/states";
-import Link from "next/link";
-import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
-import { DotLottiePlayer } from "@dotlottie/react-player";
-import "@dotlottie/react-player/dist/index.css";
+
+import MainLayout from "@/components/layouts";
+import Image from "next/image";
+import { FaSearch } from "react-icons/fa";
+
 
 export default function Home() {
-  const {
-    controllers: { notice },
-  } = useAppContext();
-  const handleClick = () => {
-    notice.add({
-      message: "notice is running",
-      type: "success",
-    });
-    notice.clear();
-  };
-
-  return (
-    <main className="w-full flex min-h-screen flex-col items-center py-5 px-10">
-      <DotLottiePlayer className="min-h-full" src="/lotties/travel_animation.lottie" autoplay loop />
-      {/* <button className="btn" onClick={handleClick}>
-        test notify
-      </button> */}
-      <div className="w-full my-5">
-        <h1 className="text-3xl font-bold">Welcome</h1>
-        <p className="text-gray-400 text-sm">Sign in to continue</p>
-      </div>
-      <div className="w-full flex flex-col gap-2">
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <MdOutlineEmail className="text-gray-400" />
-          </div>
-          <input className="input" type="text" placeholder="Email or username" />
-        </div>
-        <div className="relative w-full">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <MdOutlineLock className="text-gray-400" />
-          </div>
-          <input className="input" type="text" placeholder="Password" />
-        </div>
-        <div className="w-full flex justify-end">
-          <p className="text-xs underline">
-            <Link href="#">Forgot password?</Link>
-          </p>
-        </div>
-        <button className="btn">
-          <Link href="/form">Sign in</Link>
-        </button>
-        <div>
-          <p className="text-center">
-            Don't have an account?{" "}
-            <span className="text-center underline text-primary">
-              <Link href="#">Sign up</Link>
-            </span>
-          </p>
-        </div>
-      </div>
-    </main>
-  );
+    return (
+        <MainLayout className="p-4">
+            <div className="p-4 rounded-xl bg-white">
+                <div className="flex">
+                    <div>
+                        <h3>Hi, george!</h3>
+                        <h1 className="text-2xl mt-2">Discover Diffrent World</h1>
+                    </div>
+                    <div>
+                        <Image src="/images/avatar.svg" alt="" width={100} height={100} />
+                    </div>
+                </div>
+                <div className="relative w-full mt-4">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <FaSearch className="text-gray-400" />
+                    </div>
+                    <input className="input" type="text" placeholder="Search destiations here" />
+                </div>
+            </div>
+            <h1 className="text-xl mt-2">Recomended Locations</h1>
+            <div className="flex flex-wrap">
+                <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/tanger.webp`, height: 150 }}>
+                    <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
+                        Tanger
+                    </div>
+                </div>
+                <div className="basis-1/2">
+                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/Casablanca.jpg`, height: 200 }}>
+                        <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
+                            Casablanca
+                        </div>
+                    </div>
+                </div>
+                <div className="basis-1/2">
+                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/Marakech.jpg`, height: 200 }}>
+                        <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
+                            Marrakech
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 className="text-xl mt-4">Upcoming Matches CAF 2025</h1>
+            <div className="p-2 bg-white rounded mt-2">
+                matches table
+            </div>
+            <h1 className="text-xl mt-4">Our Best Tour Guides</h1>
+            <div className="p-2 bg-white rounded mt-2">
+                Tour Guides table
+            </div>
+        </MainLayout>
+    );
 }
