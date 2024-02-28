@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from "react"
+import { ReactNode, useEffect, useMemo, useState } from "react"
 
 interface Props {
     panels: {
@@ -9,13 +9,13 @@ interface Props {
 
 export const useStepsPanel = (panels: (string | number)[]) => {
     const [step, setStep] = useState<number>(0);
-    const panel = useMemo(() => panels[step], [step]);
+    const panel = useMemo(() => panels[step], [step, panels]);
     const canNext = useMemo(() => {
         return step < panels.length - 1;
-    }, [step]);
+    }, [step, panels]);
     const canPrev = useMemo(() => {
         return step > 0;
-    }, [step]);
+    }, [step, panels]);
 
     return {
         next: () => {
