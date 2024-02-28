@@ -17,7 +17,7 @@ import { useLoader } from "@/utils";
 import Loader from "@/components/Loader";
 import { macthes } from "@/utils/data";
 import Match from "@/components/Match";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 
 enum Steps {
@@ -53,15 +53,23 @@ const cities = [
 ]
 
 export default function NewTraject() {
+    const params = useSearchParams();
+    const stepParam = params.get("step");
+    const cityParam = params.get("city");
+    const matchParam = params.get("match");
+    const objParam = params.get("obj");
+
+    useEffect(() => {console.log(stepParam)}, [stepParam])
+
     const router = useRouter();
-    const [objective, setObjective] = useState<number>();
+    const [objective, setObjective] = useState<number>(objParam ? parseInt(objParam as string) : undefined);
     const [city, setCity] = useState<string>();
-    const [targetCity, setTargetCity] = useState<string>();
+    const [targetCity, setTargetCity] = useState<string>(cityParam as string);
     const [budget, setBudget] = useState<number>();
     const [days, setDays] = useState<number>(1);
     const [adults, setAdults] = useState<number>(0);
     const [childs, setChilds] = useState<number>(0);
-    const [activeMatch, setMatch] = useState<number>();
+    const [activeMatch, setMatch] = useState<number>(cityParam ? parseInt(cityParam as string) : undefined);
 
     const panels = useMemo(() => {
         return {
@@ -184,8 +192,8 @@ export default function NewTraject() {
     }, [objective, activeMatch])
  
     const panelsKeys = useMemo(() => Object.keys(panels), [panels])
-    const stepsPanelCtl = useStepsPanel(panelsKeys);
-    
+    const stepsPanelCtl = useStepsPanel(panelsKeys, stepParam ? parseInt(stepParam as string) : 0);
+
     const validStep = useMemo(() => {
         switch(parseInt(stepsPanelCtl.activePanel as string)) {
             case Steps.OBJECTIVE:  return typeof objective === "number";

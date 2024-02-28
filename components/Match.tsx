@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -11,15 +12,19 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
         date: string;
         stadium: string;
         city: string;
+        id: number;
     };
     active?: boolean;
 }
 
-export default function Match({ match, active, className, ...props } : Props) {
+export default function Match({ match, active, onClick, className, ...props } : Props) {
     const date = new Date(match.date);
+    const router = useRouter();
+
+    const go = () => router.push("/trajects/new?obj=0&step=3&match=" + match.id);
 
     return (
-        <div {...props} className={`p-4 mt-4 rounded flex flex-col hover:bg-primary cursor-pointer ${active ? "bg-primary" : "bg-white"} ${className || ""}`}>
+        <div {...props} onClick={onClick || go} className={`p-4 mt-4 rounded flex flex-col hover:bg-primary cursor-pointer ${active ? "bg-primary" : "bg-white"} ${className || ""}`}>
             <div className="flex mb-4">
                 <h2 className="grow">{match.title}</h2>
                 <p className="text-sm">{date.toLocaleDateString()} {date.getHours()}:{("0" + date.getMinutes()).slice(-2)}</p>

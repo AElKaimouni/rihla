@@ -40,7 +40,7 @@ export default function MainLayout({ children, className, ...props } : Props) {
     
 
     return (
-        <main  className={`flex flex-col h-screen`}>
+        <main  className={`flex flex-col h-screen overflow-hidden`}>
             <div {...props} className={`grow overflow-auto bg-background ${className || ""}`}>
                 {children}
             </div>

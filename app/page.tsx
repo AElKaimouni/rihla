@@ -3,9 +3,15 @@
 import MainLayout from "@/components/layouts";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
+import { guides, macthes } from "@/utils/data";
+import Match from "@/components/Match";
+import Guide from "@/components/Guide";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+    const router = useRouter();
+
     return (
         <MainLayout className="p-4">
             <div className="p-4 rounded-xl bg-white">
@@ -27,20 +33,20 @@ export default function Home() {
             </div>
             <h1 className="text-xl mt-2">Recomended Locations</h1>
             <div className="flex flex-wrap">
-                <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/tanger.webp')`, height: "150px" }}>
+                <div onClick={() => router.push("/trajects/new?step=1&obj=1&city=Tanger")} className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/tanger.webp')`, height: "150px" }}>
                     <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                         Tanger
                     </div>
                 </div>
                 <div className="basis-1/2">
-                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Casablanca.jpg')`, height: "200px" }}>
+                    <div onClick={() => router.push("/trajects/new?step=1&obj=1&city=Casablanca")} className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Casablanca.jpg')`, height: "200px" }}>
                         <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                             Casablanca
                         </div>
                     </div>
                 </div>
                 <div className="basis-1/2">
-                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Marakech.jpg')`, height: "200px" }}>
+                    <div onClick={() => router.push("/trajects/new?step=1&obj=1&city=Marrakech")} className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Marakech.jpg')`, height: "200px" }}>
                         <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                             Marrakech
                         </div>
@@ -48,13 +54,9 @@ export default function Home() {
                 </div>
             </div>
             <h1 className="text-xl mt-4">Upcoming Matches CAF 2025</h1>
-            <div className="p-2 bg-white rounded mt-2">
-                matches table
-            </div>
+            {macthes.map((matche, index) => <Match match={matche} key={index} />)}
             <h1 className="text-xl mt-4">Our Best Tour Guides</h1>
-            <div className="p-2 bg-white rounded mt-2">
-                Tour Guides table
-            </div>
+            {guides.map((guide, index) => <Guide guide={guide} key={index} />)}
         </MainLayout>
     );
 }

@@ -7,8 +7,8 @@ interface Props {
     ctl: ReturnType<typeof useStepsPanel>;
 }
 
-export const useStepsPanel = (panels: (string | number)[]) => {
-    const [step, setStep] = useState<number>(0);
+export const useStepsPanel = (panels: (string | number)[], defStep: number = 0) => {
+    const [step, setStep] = useState<number>(defStep);
     const panel = useMemo(() => panels[step], [step, panels]);
     const canNext = useMemo(() => {
         return step < panels.length - 1;
