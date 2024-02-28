@@ -18,7 +18,7 @@ export default function FormLayout({ children, className, ...props } : Props) {
     
 
     return (
-        <main  className={`flex flex-col h-screen `}>
+        <main  className={`flex flex-col h-[100dvh] `}>
             <div {...props} className={`grow bg-background ${className || ""}`}>
                 {children}
             </div>
