@@ -9,16 +9,17 @@ interface Props {
   description?: string;
   children?: ReactNode;
   mode?: "main" | "form";
+  onBack?: () => void;
 }
 
-export default function Breadcrumps({ title, children, description, mode }: Props) {
+export default function Breadcrumps({ title, children, description, onBack, mode }: Props) {
     const router = useRouter();
 
     return (
         <div className="flex items-center justify-center">
             {mode === "form" && (
-                <div className="flex items-center justify-between fixed top-0 left-0 w-full p-4 bg-background shadow">
-                    <div onClick={router.back}><IoIosArrowRoundBack size={40} /></div>
+                <div className="flex items-center justify-between fixed z-10 top-0 left-0 w-full p-4 bg-background shadow">
+                    <div onClick={onBack || router.back}><IoIosArrowRoundBack size={40} /></div>
                     <h1 className="text-2xl font-bold text-gray-900">Journey Details</h1>
                 </div>
             )}

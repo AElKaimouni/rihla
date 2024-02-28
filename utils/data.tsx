@@ -215,3 +215,27 @@ export const trip = {
         "Pastilla (sweet and savory pie)"
     ]
 }
+
+export const journyes = [
+    {
+      id: "1",
+      title: "Trip to watch CAF 2025 Match",
+      description:
+        "lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      date: "February 2022",
+    },
+    {
+      id: "2",
+      title: "Journey to Tanger City",
+      description:
+        "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt magna aliqua.",
+      date: "March 2022",
+    },
+    {
+      id: "3",
+      title: "Journey to Deser Sahara",
+      description: "lorem ipsum dolor sit amet , consectetur ut labore et dolore magna aliqua.",
+      date: "December 2023",
+    },
+  ];
+  

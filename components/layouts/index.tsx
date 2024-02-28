@@ -37,10 +37,9 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 
 export default function MainLayout({ children, className, ...props } : Props) {
     const pathname = usePathname();
-    
 
     return (
-        <main  className={`flex flex-col h-screen overflow-hidden`}>
+        <main  className={`flex flex-col h-[100dvh] overflow-hidden`}>
             <div {...props} className={`grow overflow-auto bg-background ${className || ""}`}>
                 {children}
             </div>

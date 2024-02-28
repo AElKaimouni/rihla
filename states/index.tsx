@@ -8,6 +8,7 @@ import userAPi from "@/APis/userAPi";
 import { AppNotice, NoticeAction, useNotice } from "./reducers/notice";
 import { MdErrorOutline, MdFileDownloadDone } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
 export interface AppContext {
     user: User | null | undefined;
@@ -34,6 +35,7 @@ interface Props {
 }
 
 export const AppContextProvider = ({ children } :Props) => {
+    const router = useRouter();
     // notices states
     const { controller: noticeController, dispatch: dispatchNotice, state: notices } = useNotice();
 
@@ -65,6 +67,10 @@ export const AppContextProvider = ({ children } :Props) => {
             notice: dispatchNotice
         }
     };
+
+    // useEffect(() => {
+    //     if(!user) router.push("/login");
+    // }, [user]);
 
     // useEffect(() => {
     //     loader.process(async() => {

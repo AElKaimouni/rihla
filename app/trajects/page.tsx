@@ -1,39 +1,28 @@
 "use client";
 
+import trajectsAPi from "@/APis/trajectsAPi";
+import Loader from "@/components/Loader";
 import Breadcrumps from "@/components/breadcumps";
 import MainLayout from "@/components/layouts";
+import { useLoader } from "@/utils";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
+import { journyes } from "@/utils/data";
 
 // export const metadata = {
 //   title: "Journeys",
 //   description: "Your latest journeys",
 // };
 
-const journyes = [
-  {
-    id: "1",
-    title: "Custom title made by the user",
-    description:
-      "lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    date: "February 2022",
-  },
-  {
-    id: "2",
-    title: "Application UI code in Tailwind CSS",
-    description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt magna aliqua.",
-    date: "March 2022",
-  },
-  {
-    id: "3",
-    title: "Application UI code in Tailwind CSS",
-    description: "lorem ipsum dolor sit amet , consectetur ut labore et dolore magna aliqua.",
-    date: "December 2023",
-  },
-];
 
 export default function TrajectsPage() {
+//   const [jourenys, setJourneys] = useState<typeof journyes>();
+
+//   useEffect(() => {
+//     trajectsAPi.all().then(res => setJourneys(res));
+//   }, []);
+
   return (
     <MainLayout className="p-4">
         <Breadcrumps title="Journeys" description="Light your way with us." >
@@ -45,7 +34,7 @@ export default function TrajectsPage() {
         </Breadcrumps>
         <div className="border border-gray-200 my-5"></div>
         <div className="flex flex-col gap-4">
-            <ol className="relative border-s border-gray-700">
+            {journyes && <ol className="relative border-s border-gray-700">
                 {journyes.map((item) => (
                     <Link href={`/trajects/${item.id}`} key={item.id}>
                         <li className="mb-6 ms-4">
@@ -58,7 +47,8 @@ export default function TrajectsPage() {
                         </li>
                     </Link>
                 ))}
-            </ol>
+            </ol>}
+            {!journyes && <Loader />}
         </div>
     </MainLayout>
   )

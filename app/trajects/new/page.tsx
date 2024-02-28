@@ -18,6 +18,7 @@ import Loader from "@/components/Loader";
 import { macthes } from "@/utils/data";
 import Match from "@/components/Match";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { DotLottiePlayer } from "@dotlottie/react-player";
 
 
 enum Steps {
@@ -210,13 +211,18 @@ export default function NewTraject() {
 
     const submit = () => {
         loader.start();
+        window.setTimeout(() => {
+            router.push("/trajects/1");
+        }, 5000)
     }
 
     return (
         <FormLayout className="flex flex-col h-screen">
             <div className="grow overflow-auto p-2 flex justify-center flex-col">
                 {!loading && <StepsPanel ctl={stepsPanelCtl} panels={panels} />}
-                {loading && <Loader />}
+                {loading && <>
+                    <DotLottiePlayer className="min-h-full" src="/lotties/travel_animation.lottie" autoplay loop />
+                </>}
             </div>
             {!loading && <div className="flex px-8 py-4">
                 <div className="grow">
