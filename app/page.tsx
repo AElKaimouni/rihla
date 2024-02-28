@@ -27,20 +27,20 @@ export default function Home() {
             </div>
             <h1 className="text-xl mt-2">Recomended Locations</h1>
             <div className="flex flex-wrap">
-                <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/tanger.webp`, height: 150 }}>
+                <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/tanger.webp')`, height: "150px" }}>
                     <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                         Tanger
                     </div>
                 </div>
                 <div className="basis-1/2">
-                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/Casablanca.jpg`, height: 200 }}>
+                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Casablanca.jpg')`, height: "200px" }}>
                         <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                             Casablanca
                         </div>
                     </div>
                 </div>
                 <div className="basis-1/2">
-                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url(/images/locations/Marakech.jpg`, height: 200 }}>
+                    <div className="basis-full p-2 m-2 bg-cover bg-center rounded-xl" style={{ backgroundImage: `url('/images/locations/Marakech.jpg')`, height: "200px" }}>
                         <div className="bg-black/75 inline-block px-4 py-1 text-xs text-gray-100 rounded-full">
                             Marrakech
                         </div>
