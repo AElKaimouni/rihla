@@ -41,8 +41,8 @@ const objectives = [
         scale: 1.5
     },
     {
-        title: "Football",
-        icon: "/images/objectives/football.png"
+        title: "Food",
+        icon: "/images/objectives/food.png"
     }
 ]
 

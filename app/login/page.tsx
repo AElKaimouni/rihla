@@ -4,6 +4,8 @@ import Link from "next/link";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
+import { useEffect } from "react";
+import userAPi from "@/APis/userAPi";
 
 export default function Home() {
   const {
@@ -16,6 +18,10 @@ export default function Home() {
     });
     notice.clear();
   };
+
+  useEffect(() => {
+    userAPi.login("abdo@gmail.com", "pass1234");
+  }, [])
 
   return (
     <main className="w-full flex min-h-screen flex-col items-center py-5 px-10">

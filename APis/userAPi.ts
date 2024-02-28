@@ -18,7 +18,7 @@ export default {
     },
     login: async (email: string, password: string, remember: boolean = false) => {
         try {
-            const res = await api.post("/login", { email, password, remember }, { headers: {
+            const res = await api.post("/Login/", { email, password, remember }, { headers: {
                 
             } });
 

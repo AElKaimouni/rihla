@@ -1,3 +1,5 @@
+"use client";
+
 import Match from "@/components/Match";
 import Breadcrumps from "@/components/breadcumps";
 import MainLayout from "@/components/layouts";
