@@ -4,11 +4,13 @@ import Link from "next/link";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
+import { useState } from "react";
 
 export default function Home() {
   const {
     controllers: { notice },
   } = useAppContext();
+
   const handleClick = () => {
     notice.add({
       message: "notice is running",
@@ -17,8 +19,11 @@ export default function Home() {
     notice.clear();
   };
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
-    <main className="w-full flex min-h-screen flex-col items-center py-5 px-10">
+    <main className="w-full flex min-h-[100dvh] flex-col items-center py-5 px-10">
       <DotLottiePlayer className="min-h-full" src="/lotties/travel_animation.lottie" autoplay loop />
       {/* <button className="btn" onClick={handleClick}>
         test notify

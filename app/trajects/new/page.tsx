@@ -73,7 +73,7 @@ export default function NewTraject() {
     }, [objective, stepsPanelCtl.activePanel]);
 
     return (
-        <FormLayout className="flex flex-col h-screen">
+        <FormLayout className="flex flex-col h-[100dvh]">
             <div className="grow overflow-auto p-2">
                 <StepsPanel ctl={stepsPanelCtl} panels={panels} />
             </div>
