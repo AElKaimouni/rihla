@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import userAPi from "@/APis/userAPi";
 import { useLoader } from "@/utils";
 import { useRouter } from "next/navigation";

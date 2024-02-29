@@ -18,10 +18,10 @@ export default {
     },
     login: async (email: string, password: string, remember: boolean = false) => {
         try {
-            const res = await api.post("/Login/", { email, password, remember });
-
-            window.localStorage.setItem("auth_token", res.data.jwt);
-
+            const res = await api.post("/Login/", { email, password, remember }, { headers: {
+                
+            } });
+            localStorage.setItem("auth_token", "Bearer " + res.data.jwt);
             return res.data as string;
         } catch(error) {
             if(error instanceof AxiosError && error.response?.status === 403) {

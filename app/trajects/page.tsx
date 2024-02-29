@@ -7,6 +7,7 @@ import MainLayout from "@/components/layouts";
 import { useLoader } from "@/utils";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { journyes } from "@/utils/data";
 
@@ -51,5 +52,5 @@ export default function TrajectsPage() {
             {!journyes && <Loader />}
         </div>
     </MainLayout>
-  )
+  );
 }
