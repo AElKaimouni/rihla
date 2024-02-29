@@ -4,10 +4,13 @@ import Link from "next/link";
 import { MdOutlineEmail, MdOutlineLock } from "react-icons/md";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import "@dotlottie/react-player/dist/index.css";
-import { useEffect } from "react";
+import { useRef } from "react";
 import userAPi from "@/APis/userAPi";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
+
   const {
     controllers: { notice },
   } = useAppContext();
@@ -19,9 +22,24 @@ export default function Home() {
     notice.clear();
   };
 
-  useEffect(() => {
-    userAPi.login("abdo@gmail.com", "pass1234");
-  }, [])
+  const refemail = useRef(null);
+  const refpassword = useRef(null);
+
+  const handleLogin = () => {
+    const email = refemail.current.value;
+    const password = refpassword.current.value;
+    userAPi
+      .login(email, password)
+      .then(() => {
+        router.push("/");
+      })
+      .catch(() => {
+        notice.add({
+          message: "Error logging in, please try again.",
+          type: "fail",
+        });
+      });
+  };
 
   return (
     <main className="w-full flex min-h-screen flex-col items-center py-5 px-10">
@@ -38,21 +56,21 @@ export default function Home() {
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <MdOutlineEmail className="text-gray-400" />
           </div>
-          <input className="input" type="text" placeholder="Email or username" />
+          <input ref={refemail} className="input" type="text" placeholder="Email or username" />
         </div>
         <div className="relative w-full">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <MdOutlineLock className="text-gray-400" />
           </div>
-          <input className="input" type="text" placeholder="Password" />
+          <input ref={refpassword} className="input" type="password" placeholder="Password" />
         </div>
         <div className="w-full flex justify-end">
           <p className="text-xs underline">
             <Link href="#">Forgot password?</Link>
           </p>
         </div>
-        <button className="btn">
-          <Link href="/form">Sign in</Link>
+        <button className="btn" onClick={() => handleLogin()}>
+          Sign in
         </button>
         <div>
           <p className="text-center">

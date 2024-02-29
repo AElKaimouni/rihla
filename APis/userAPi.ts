@@ -21,7 +21,7 @@ export default {
             const res = await api.post("/Login/", { email, password, remember }, { headers: {
                 
             } });
-
+            localStorage.setItem("auth_token", "Bearer " + res.data.jwt);
             return res.data as string;
         } catch(error) {
             if(error instanceof AxiosError && error.response?.status === 400) {

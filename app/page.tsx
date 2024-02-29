@@ -3,13 +3,36 @@
 import MainLayout from "@/components/layouts";
 import Image from "next/image";
 import { FaSearch } from "react-icons/fa";
-import { guides, macthes } from "@/utils/data";
 import Match from "@/components/Match";
 import Guide from "@/components/Guide";
 import { useRouter } from "next/navigation";
+import matchAPI from "@/APis/matchAPI";
+import { useEffect, useState } from "react";
+import guidesAPI from "@/APis/guidesAPI";
 
 export default function Home() {
   const router = useRouter();
+
+  const [matches, setMatches] = useState([]);
+  const getMatches = async () => {
+    matchAPI
+      .getMatches()
+      .then((data) => setMatches(data))
+      .catch((error) => console.log(error));
+  };
+
+  const [guides, setGuides] = useState([]);
+  const getGuides = async () => {
+    guidesAPI
+      .getGuides()
+      .then((data) => setGuides(data))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getMatches();
+    getGuides();
+  }, []);
 
   return (
     <MainLayout className="p-4">
@@ -59,11 +82,11 @@ export default function Home() {
         </div>
       </div>
       <h1 className="text-xl mt-4">Upcoming Matches CAF 2025</h1>
-      {macthes.map((matche, index) => (
+      {matches.slice(0, 3).map((matche, index) => (
         <Match match={matche} key={index} />
       ))}
       <h1 className="text-xl mt-4">Our Best Tour Guides</h1>
-      {guides.map((guide, index) => (
+      {guides.slice(0, 3).map((guide, index) => (
         <Guide guide={guide} key={index} />
       ))}
     </MainLayout>

@@ -1,8 +1,11 @@
+"use client";
+import { api } from "@/APis";
 import Breadcrumps from "@/components/breadcumps";
 import MainLayout from "@/components/layouts";
 import FormLayout from "@/components/layouts/form";
 import { trip } from "@/utils/data";
 import Link from "next/link";
+import { use, useEffect } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 const HotelItem = ({ hotel }) => (
@@ -49,41 +52,43 @@ const DayItem = ({ day, idx }) => (
 );
 
 export default async function Page({ params }: { params: { trajet_id: string } }) {
+
+
   return (
     <FormLayout className="p-4">
-        <Breadcrumps mode="form" title="Journey Details" />
-        <div className="container mx-auto py-4 mt-12">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Hotels</h2>
-                {trip.hotels.map((hotel, index) => (
-                    <HotelItem key={index} hotel={hotel} />
-                ))}
-            </div>
+      <Breadcrumps mode="form" title="Journey Details" />
+      <div className="container mx-auto py-4 mt-12">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Hotels</h2>
+          {trip.hotels.map((hotel, index) => (
+            <HotelItem key={index} hotel={hotel} />
+          ))}
+        </div>
 
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Restaurants</h2>
-                {trip.restaurants.map((restaurant, index) => (
-                    <RestaurantItem key={index} restaurant={restaurant} />
-                ))}
-            </div>
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Restaurants</h2>
+          {trip.restaurants.map((restaurant, index) => (
+            <RestaurantItem key={index} restaurant={restaurant} />
+          ))}
+        </div>
 
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Activities</h2>
-                {trip.activites.map((activity, index) => (
-                    <ActivityItem key={index} activity={activity} />
-                ))}
-            </div>
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold mb-4">Activities</h2>
+          {trip.activites.map((activity, index) => (
+            <ActivityItem key={index} activity={activity} />
+          ))}
+        </div>
 
-            <div>
-            <h2 className="text-2xl font-bold mb-4">Foods</h2>
-                {trip.food.map((food, index) => (
-                    <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
-                    <p className="text-gray-600">{food}</p>
-                    </div>
-                ))}
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Foods</h2>
+          {trip.food.map((food, index) => (
+            <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
+              <p className="text-gray-600">{food}</p>
             </div>
+          ))}
+        </div>
 
-            {/* 
+        {/* 
                 
             <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Guides</h2>
@@ -98,7 +103,7 @@ export default async function Page({ params }: { params: { trajet_id: string } }
                 <DayItem key={index} day={day} idx={index} />
             ))}
             </div> */}
-        </div>
+      </div>
     </FormLayout>
   );
 }

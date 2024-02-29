@@ -1,8 +1,17 @@
 import { api } from ".";
 import { AxiosError } from "axios";
 
+export type Guide = {
+  id: number;
+  name: string;
+  email: string;
+  ville: string;
+  description: string;
+  avatar: URL;
+};
+
 export default {
-  getGuides: async () => {
+  getGuides: async (): Promise<Guide[]> => {
     try {
       const res = await api.get("/Guides/");
       return res.data;
@@ -13,7 +22,7 @@ export default {
       throw error;
     }
   },
-  getOneGuide: async (id: string) => {
+  getOneGuide: async (id: string): Promise<Guide> => {
     try {
       const res = await api.get("/guides/" + id + "/");
       return res.data;
