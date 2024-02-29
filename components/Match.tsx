@@ -21,7 +21,7 @@ export default function Match({ match, active, onClick, className, ...props } : 
     const date = new Date(match.date);
     const router = useRouter();
 
-    const go = () => router.push("/trajects/new?obj=0&step=3&match=" + match.id);
+    const go = () => router.push("/trajects/new?obj=0&step=2&match=" + match.id);
 
     return (
         <div {...props} onClick={onClick || go} className={`p-4 mt-4 rounded flex flex-col hover:bg-primary cursor-pointer ${active ? "bg-primary" : "bg-white"} ${className || ""}`}>

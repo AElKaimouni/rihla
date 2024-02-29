@@ -12,8 +12,8 @@ import Image from "next/image";
 
 export default function Home() {
   const { controllers: { user } } = useAppContext();
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("abdo2@gmail.com");
+  const [password, setPassword] = useState<string>("pass1234");
   const [loading, loader] = useLoader();
   const router = useRouter();
 
