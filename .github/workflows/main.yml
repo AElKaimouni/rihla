@@ -27,4 +27,6 @@ jobs:
           git pull origin master
           git status
           docker build -t rihla . --no-cache
-          docker restart rihla
+          docker stop rihla
+          docker rm rihla
+          docker run --name rihla -p 3000:3000 rihla

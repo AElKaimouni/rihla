@@ -43,7 +43,7 @@ export default function Home() {
         <div className="flex">
           <div>
             <h3>Hi, {user?.name}!</h3>
-            <h1 className="text-2xl mt-2">Discover Diffrent World.</h1>
+            <h1 className="text-2xl mt-2">Discover Diffrent World</h1>
           </div>
           <div>
             <Image src="/images/avatar.svg" alt="" width={100} height={100} />
