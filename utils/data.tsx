@@ -38,27 +38,246 @@ export const guides = [
     {
         name: "Guide Name",
         email: "test@gmailcom",
-        city: "Rabat",
+        ville: "Rabat",
         description: "Lorem ipsum is placeholder text commonly used in the graphic, print.",
         avatar: "/images/avatar.svg"
     },
     {
         name: "Guide Name",
         email: "test@gmailcom",
-        city: "Rabat",
+        ville: "Rabat",
         description: "Lorem ipsum is placeholder text commonly used in the graphic, print.",
         avatar: "/images/avatar.svg"
     },
     {
         name: "Guide Name",
         email: "test@gmailcom",
-        city: "Rabat",
+        ville: "Rabat",
         description: "Lorem ipsum is placeholder text commonly used in the graphic, print.",
         avatar: "/images/avatar.svg"
     }
 ]
 
 export const trip = {
+    plan: {
+        "day1": {
+            "activities": [
+                {
+                    "name": "Visit Agadir Beach",
+                    "type": "Sightseeing",
+                    "location": "Agadir Beach, Agadir",
+                    "description": "Relax on the sandy beaches and enjoy the Atlantic Ocean views",
+                    "price": "Free"
+                },
+                {
+                    "name": "Explore Souk El Had",
+                    "type": "Shopping",
+                    "location": "Souk El Had, Agadir",
+                    "description": "Shop for local crafts, spices, and souvenirs in this bustling market",
+                    "price": "Varies"
+                },
+                {
+                    "name": "Try Moroccan Street Food",
+                    "type": "Food",
+                    "location": "Various street food stalls in Agadir",
+                    "description": "Taste traditional Moroccan street food like grilled sardines and seafood pastilla",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Taste Couscous",
+                "Enjoy Mint Tea",
+                "Try Moroccan Pastries"
+            ],
+            "transportation": "Local taxis or rental car"
+        },
+        "day2": {
+            "activities": [
+                {
+                    "name": "Visit Agadir Kasbah",
+                    "type": "Sightseeing",
+                    "location": "Agadir Kasbah, Agadir",
+                    "description": "Explore the historic ruins of the Agadir Kasbah and enjoy panoramic views of the city",
+                    "price": "$5"
+                },
+                {
+                    "name": "Relax at Crocoparc",
+                    "type": "Leisure",
+                    "location": "Crocoparc, Agadir",
+                    "description": "Discover exotic plants and see crocodiles up close in this botanical garden",
+                    "price": "$10"
+                },
+                {
+                    "name": "Dine at a Seafront Restaurant",
+                    "type": "Food",
+                    "location": "Seafront restaurants in Agadir",
+                    "description": "Enjoy fresh seafood dishes while overlooking the ocean",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Try Tagine",
+                "Savor Harira Soup",
+                "Indulge in Moroccan Sweets"
+            ],
+            "transportation": "Local buses or walking"
+        },
+        "day3": {
+            "activities": [
+                {
+                    "name": "Surfing at Taghazout Beach",
+                    "type": "Adventure",
+                    "location": "Taghazout Beach, Agadir",
+                    "description": "Experience world-class surfing waves and take a lesson with local instructors",
+                    "price": "$30 per person"
+                },
+                {
+                    "name": "Visit Paradise Valley",
+                    "type": "Nature",
+                    "location": "Paradise Valley, Agadir",
+                    "description": "Hike through stunning canyons, swim in natural pools, and enjoy the beautiful scenery",
+                    "price": "$15 for guided tour"
+                },
+                {
+                    "name": "Try Traditional Berber Cuisine",
+                    "type": "Food",
+                    "location": "Local Berber restaurant in Agadir",
+                    "description": "Taste authentic Berber dishes like couscous with lamb and tajine",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Sample Moroccan Mint Tea",
+                "Taste Berber Bread",
+                "Enjoy Dates and Nuts"
+            ],
+            "transportation": "Rental car or organized tour"
+        },
+        "day4": {
+            "activities": [
+                {
+                    "name": "Camel Ride on the Beach",
+                    "type": "Adventure",
+                    "location": "Agadir Beach, Agadir",
+                    "description": "Experience a camel ride along the sandy shores of Agadir Beach",
+                    "price": "$20 per person"
+                },
+                {
+                    "name": "Explore Agadir Marina",
+                    "type": "Sightseeing",
+                    "location": "Agadir Marina, Agadir",
+                    "description": "Stroll along the marina, admire luxury yachts, and dine at waterfront restaurants",
+                    "price": "Free"
+                },
+                {
+                    "name": "Visit La Medina d'Agadir",
+                    "type": "Culture",
+                    "location": "La Medina d'Agadir, Agadir",
+                    "description": "Discover a replica of a traditional Moroccan medina with shops and cafes",
+                    "price": "$5"
+                }
+            ],
+            "food": [
+                "Try Grilled Fish",
+                "Savor Moroccan Olives",
+                "Indulge in Baklava"
+            ],
+            "transportation": "Local taxis or walking"
+        },
+        "day5": {
+            "activities": [
+                {
+                    "name": "Day Trip to Taroudant",
+                    "type": "Excursion",
+                    "location": "Taroudant, Agadir",
+                    "description": "Explore the 'Grandmother of Marrakech' with its ancient city walls and vibrant markets",
+                    "price": "$50 per person for guided tour"
+                },
+                {
+                    "name": "Visit Tafraoute",
+                    "type": "Nature",
+                    "location": "Tafraoute, Agadir",
+                    "description": "Discover the painted rocks and picturesque landscapes of Tafraoute",
+                    "price": "$80 per person for guided tour"
+                },
+                {
+                    "name": "Dine at a Traditional Moroccan Riad",
+                    "type": "Food",
+                    "location": "Traditional Riad in Agadir",
+                    "description": "Experience a luxurious dining experience with authentic Moroccan cuisine",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Taste Moroccan Couscous with Seven Vegetables",
+                "Enjoy Lamb Tagine with Prunes",
+                "Savor Almond Briouats"
+            ],
+            "transportation": "Organized tour or rental car"
+        },
+        "day6": {
+            "activities": [
+                {
+                    "name": "Quad Biking in the Desert",
+                    "type": "Adventure",
+                    "location": "Desert near Agadir",
+                    "description": "Embark on an adrenaline-pumping quad biking adventure in the desert",
+                    "price": "$40 per person"
+                },
+                {
+                    "name": "Visit Agadir Crocodile Park",
+                    "type": "Nature",
+                    "location": "Agadir Crocodile Park, Agadir",
+                    "description": "See a variety of crocodile species and learn about conservation efforts",
+                    "price": "$12 per person"
+                },
+                {
+                    "name": "Try Moroccan Pastries and Tea",
+                    "type": "Food",
+                    "location": "Local pastry shop in Agadir",
+                    "description": "Indulge in a selection of sweet Moroccan pastries and traditional mint tea",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Sample Moroccan Chebakia",
+                "Taste Maakouda (Potato Fritters)",
+                "Enjoy Chebakia with Honey"
+            ],
+            "transportation": "Local taxis or rental car"
+        },
+        "day7": {
+            "activities": [
+                {
+                    "name": "Relax at Agadir Marina Beach Club",
+                    "type": "Leisure",
+                    "location": "Agadir Marina Beach Club, Agadir",
+                    "description": "Unwind in a luxurious beach club setting with poolside lounging and beach access",
+                    "price": "$25 per person"
+                },
+                {
+                    "name": "Visit Agadir Birds Valley",
+                    "type": "Nature",
+                    "location": "Agadir Birds Valley, Agadir",
+                    "description": "Explore a tropical garden with a variety of bird species and lush vegetation",
+                    "price": "$8 per person"
+                },
+                {
+                    "name": "Farewell Dinner at a Traditional Moroccan Restaurant",
+                    "type": "Food",
+                    "location": "Traditional Moroccan restaurant in Agadir",
+                    "description": "Enjoy a final feast of Moroccan specialties and live music",
+                    "price": "Varies"
+                }
+            ],
+            "food": [
+                "Try Seafood Bastilla",
+                "Savor Chicken with Preserved Lemon and Olives",
+                "Indulge in Mint Tea with Pine Nuts"
+            ],
+            "transportation": "Local buses or walking"
+        }
+    },
     "hotels": [
         {
             "nom": "ETOILE DU NORD",
@@ -222,20 +441,38 @@ export const journyes = [
       title: "Trip to watch CAF 2025 Match",
       description:
         "lorem ipsum dolor sit amet , consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "February 2022",
+      datetime: "February 2022",
     },
     {
       id: "2",
       title: "Journey to Tanger City",
       description:
         "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt magna aliqua.",
-      date: "March 2022",
+        datetime: "March 2022",
     },
     {
       id: "3",
       title: "Journey to Deser Sahara",
       description: "lorem ipsum dolor sit amet , consectetur ut labore et dolore magna aliqua.",
-      date: "December 2023",
+      datetime: "December 2023",
     },
+];
+
+export const cities = [
+    "Agadir",
+    "Casablanca",
+    "Fez",
+    "Marrakech",
+    "Rabat",
+    "Tangier",
+    "Beni Mellal",
+    "El Jadida",
+    "Essaouira",
+    "Ifrane",
+    "Kenitra",
+    "Meknes",
+    "Ouarzazate",
+    "Oujda",
+    "Safi",
+    "Tetouan"
   ];
-  

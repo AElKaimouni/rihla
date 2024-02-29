@@ -1,11 +1,17 @@
 "use client";
 
+import guidesAPI, { Guide } from "@/APis/guidesAPI";
+import trajectsAPi from "@/APis/trajectsAPi";
+
+import GuideComp from "@/components/Guide";
+import Loader from "@/components/Loader";
 import Breadcrumps from "@/components/breadcumps";
 import FormLayout from "@/components/layouts/form";
+import { useLoader } from "@/utils";
 import { trip } from "@/utils/data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const HotelItem = ({ hotel }) => (
   <div className="bg-white shadow rounded-md p-4 mb-4">
@@ -79,7 +85,10 @@ const items = [
   }
 ]
 
-export default function Page({ params }: { params: { trajet_id: string } }) {
+export default function TrajectsPage({ params }) {
+  const [traject, setTraject] = useState<typeof trip>();
+  const [guides, setGuides] = useState<Guide[]>();
+  const [loading, loader] = useLoader(true);
   const [panel, setPanel] = useState<number>(-1);
   const title = useMemo(() => {
     if(panel === -1) return "Journey Details";
@@ -92,57 +101,99 @@ export default function Page({ params }: { params: { trajet_id: string } }) {
     else setPanel(-1);
   }
 
+  useEffect(() => {
+    loader.process(async () => {
+      const res = await trajectsAPi.traject(params.trajet_id);
+      const g = await guidesAPI.getGuides();
+      
+      setGuides(g);
+      setTraject(res);
+    });
+  }, [])
+
   return (
     <FormLayout className="p-4">
         <Breadcrumps onBack={back} mode="form" title={title} />
-        {panel === -1 && <div className="mt-12">
-          <h1 className="text-center text-2xl p-4 px-8 text-gray-700">Our Propositions For Your Trip</h1>
-          <ul className="flex flex-wrap">
-              {items.map((obj, index) => (
-                  <li onClick={() => setPanel(index)} className="p-4 basis-1/2 cursor-pointer" key={index}>
-                      <div className={`p-4 bg-white flex flex-col items-center rounded-full  hover:bg-primary hover:text-gray-100`}>
-                          <Image className="relative" src={obj.icon} alt={obj.title} width={75} height={75} style={{ transform: `scale(${obj.scale || 1})` }} />
-                          <h2 className="mt-2 text-lg">{obj.title}</h2>
+        {!loading && <>
+          {panel === -1 && <div className="mt-12">
+            <h1 className="text-center text-2xl p-4 px-8 text-gray-700">Our Propositions For Your Trip</h1>
+            <ul className="flex flex-wrap">
+                {items.map((obj, index) => (
+                    <li onClick={() => setPanel(index)} className="p-4 basis-1/2 cursor-pointer" key={index}>
+                        <div className={`p-4 bg-white flex flex-col items-center rounded-full  hover:bg-primary hover:text-gray-100`}>
+                            <Image className="relative" src={obj.icon} alt={obj.title} width={75} height={75} style={{ transform: `scale(${obj.scale || 1})` }} />
+                            <h2 className="mt-2 text-lg">{obj.title}</h2>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+          </div>}
+
+          {panel === 0 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">Hotels</h2>
+                  {traject.hotels.map((hotel, index) => (
+                      <HotelItem key={index} hotel={hotel} />
+                  ))}
+              </div>
+            </div>
+          )} 
+
+          {panel === 1 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div className="mb-8">
+                  <h2 className="text-2xl font-bold mb-4">Activities</h2>
+                  {traject.activites.map((activity, index) => (
+                      <ActivityItem key={index} activity={activity} />
+                  ))}
+              </div>
+            </div>
+          )} 
+
+          {panel === 2 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Foods</h2>
+                  {traject.food.map((food, index) => (
+                      <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
+                        <p className="text-gray-600 font-semibold">{food}</p>
                       </div>
-                  </li>
-              ))}
-          </ul>
-        </div>}
-
-        {panel === 0 && (
-          <div className="container mx-auto py-4 mt-12">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Hotels</h2>
-                {trip.hotels.map((hotel, index) => (
-                    <HotelItem key={index} hotel={hotel} />
-                ))}
+                  ))}
+              </div>
             </div>
-          </div>
-        )} 
+          )} 
+        </>}
 
-        {panel === 1 && (
-          <div className="container mx-auto py-4 mt-12">
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">Activities</h2>
-                {trip.activites.map((activity, index) => (
-                    <ActivityItem key={index} activity={activity} />
-                ))}
-            </div>
-          </div>
-        )} 
-
-        {panel === 2 && (
+        {panel === 4 && (
           <div className="container mx-auto py-4 mt-12">
             <div>
-              <h2 className="text-2xl font-bold mb-4">Foods</h2>
-                {trip.food.map((food, index) => (
-                    <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
-                      <p className="text-gray-600 font-semibold">{food}</p>
-                    </div>
-                ))}
+              <h2 className="text-2xl font-bold mb-4">Tour Guides</h2>
+              {guides.map((guide, index) => <GuideComp guide={guide as any} key={index} />)}
             </div>
           </div>
-        )} 
+        )}
+
+        {panel === 5 && (
+          <div className="container mx-auto py-4 mt-12">
+            <div>
+              {Object.keys(trip.plan).map((day, index) => (<>
+                <h2 key={index} className="text-2xl font-bold mb-4">Day {index + 1}</h2>
+                {trip.plan[day].activities.map((activity, index) => (
+                  <div className="bg-white shadow-md rounded-md p-4 mb-4">
+                    <h2 className="text-md font-semibold">{activity.name}</h2>
+                    <span className="text-primary">{activity.price}</span>
+                    <p className="text-gray-700 text-sm">{activity.description}</p>
+                  </div>
+                ))}
+
+              </>))}
+              
+              
+            </div>
+          </div>
+        )}
+        {loading && <Loader />}
     </FormLayout>
   );
 }

@@ -5,11 +5,11 @@ import { AxiosError } from "axios";
 export default {
     auth: async () => {
         try {
-            const res = await api.post("/user/auth");
+            const res = await api.get("/UserInfo/");
 
             return res.data as User;
         } catch(error) {
-            if(error instanceof AxiosError && error.response?.status === 401) {
+            if(error instanceof AxiosError && error.response?.status === 403) {
                 return null;
             }
 
@@ -18,11 +18,13 @@ export default {
     },
     login: async (email: string, password: string, remember: boolean = false) => {
         try {
-            const res = await api.post("/Login/", { email, password, remember }, { headers: {
-                
-            } });
+            const res = await api.post("/Login/", { email, password, remember });
+
             localStorage.setItem("auth_token", "Bearer " + res.data.jwt);
-            return res.data as string;
+
+            const user = await api.get("/UserInfo/");
+
+            return user.data as User;
         } catch(error) {
             if(error instanceof AxiosError && error.response?.status === 403) {
                 return null;

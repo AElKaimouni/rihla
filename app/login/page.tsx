@@ -19,14 +19,13 @@ export default function Home() {
 
   const submit = (e: FormEvent<HTMLFormElement>) => loader.process(async () => {
     e.preventDefault();
-    // const res = await userAPi.login(email, password);
+    const res = await userAPi.login(email, password);
     
-    // if(res) {
-    //   user.login(res);
-    //   router.push("/");
-    // }
+    if(res) {
+      user.login(res);
+      router.push("/");
+    }
 
-    router.push("/");
   })
 
   return (

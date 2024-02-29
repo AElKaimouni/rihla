@@ -3,7 +3,7 @@
 import StepsPanel, { useStepsPanel } from "@/components/StepsPanel";
 import FormLayout from "@/components/layouts/form";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 import { GrFormNextLink } from "react-icons/gr";
 import { GrFormPreviousLink } from "react-icons/gr";
@@ -15,10 +15,12 @@ import { MdEmojiPeople } from "react-icons/md";
 import { FaChild } from "react-icons/fa6";
 import { useLoader } from "@/utils";
 import Loader from "@/components/Loader";
-import { macthes } from "@/utils/data";
+import { cities, macthes } from "@/utils/data";
 import Match from "@/components/Match";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { DotLottiePlayer } from "@dotlottie/react-player";
+import trajectsAPi from "@/APis/trajectsAPi";
+import matchAPI from "@/APis/matchAPI";
 
 
 enum Steps {
@@ -47,20 +49,12 @@ const objectives = [
     }
 ]
 
-const cities = [
-    "Tanger",
-    "Rabat",
-    "Casablanca"
-]
-
-export default function NewTraject() {
+function NewTrajectPage() {
     const params = useSearchParams();
     const stepParam = params.get("step");
     const cityParam = params.get("city");
     const matchParam = params.get("match");
     const objParam = params.get("obj");
-
-    useEffect(() => {console.log(stepParam)}, [stepParam])
 
     const router = useRouter();
     const [objective, setObjective] = useState<number>(objParam ? parseInt(objParam as string) : undefined);
@@ -70,7 +64,12 @@ export default function NewTraject() {
     const [days, setDays] = useState<number>(1);
     const [adults, setAdults] = useState<number>(0);
     const [childs, setChilds] = useState<number>(0);
-    const [activeMatch, setMatch] = useState<number>(cityParam ? parseInt(cityParam as string) : undefined);
+    const [activeMatch, setMatch] = useState<number>(matchParam ? parseInt(matchParam as string) : undefined);
+    const [allMatches, setMatches] = useState<typeof macthes>([]);
+
+    useEffect(() => {
+        matchAPI.getMatches().then(res =>  setMatches(res));
+    }, [])
 
     const panels = useMemo(() => {
         return {
@@ -91,7 +90,7 @@ export default function NewTraject() {
                 [Steps.MATCH] : (<>
                     <h1 className="text-center text-2xl p-4 px-8 text-gray-700">Choose CAF 2025 Match For Your Trip</h1>
                     <div className="mx-2">
-                        {macthes.map((match, index) => <Match onClick={() => setMatch(match.id)} active={activeMatch === match.id} match={match} key={index} />)}
+                        {allMatches.map((match, index) => <Match onClick={() => setMatch(match.id)} active={activeMatch === match.id} match={match} key={index} />)}
                     </div>
                 </>)
             } : {}),
@@ -190,7 +189,7 @@ export default function NewTraject() {
     
             </>)
         }
-    }, [objective, activeMatch])
+    }, [objective, activeMatch, days, adults, childs])
  
     const panelsKeys = useMemo(() => Object.keys(panels), [panels])
     const stepsPanelCtl = useStepsPanel(panelsKeys, stepParam ? parseInt(stepParam as string) : 0);
@@ -209,12 +208,31 @@ export default function NewTraject() {
     }, [city]);
     const [loading, loader] = useLoader();
 
-    const submit = () => {
-        loader.start();
-        window.setTimeout(() => {
-            router.push("/trajects/1");
-        }, 5000)
-    }
+    const submit = () => loader.process(async () => {
+        let obj = "Cultural", city = "";
+
+        if(targetCity) {
+            obj = "visit " + targetCity + " city";
+            city = targetCity;
+        }
+        if(activeMatch)  {
+            const match = allMatches.find(m => m.id === activeMatch);
+
+            city = match.city;
+            // obj = "watch football match in " + match.city + " city of " + match.country1 + " vs " + match.country2;
+            obj = "football";
+        }
+
+        const res = await trajectsAPi.new({
+            budget,
+            city,
+            number: adults + childs + 1,
+            objectif: obj,
+            time: days + " days"
+        });
+
+        router.push("/trajects/" + res.id);
+    });
 
     return (
         <FormLayout className="flex flex-col h-screen">
@@ -238,5 +256,13 @@ export default function NewTraject() {
                 </button>}
             </div>}
         </FormLayout>
+    )
+}
+
+export default function NewTraject() {
+    return (
+        <Suspense>
+            <NewTrajectPage />
+        </Suspense>
     )
 }

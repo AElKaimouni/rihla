@@ -20,7 +20,7 @@ const tabs = [
         Icon: IoMdFootball
     },
     {
-        title: "Trajects",
+        title: "Trips",
         link: "/trajects",
         Icon: FaWalking
     },

@@ -9,9 +9,12 @@ import { useRouter } from "next/navigation";
 import matchAPI from "@/APis/matchAPI";
 import { useEffect, useState } from "react";
 import guidesAPI from "@/APis/guidesAPI";
+import { useAppContext } from "@/states";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
+  const { user } = useAppContext();
 
   const [matches, setMatches] = useState([]);
   const getMatches = async () => {
@@ -39,7 +42,7 @@ export default function Home() {
       <div className="p-4 rounded-xl bg-white">
         <div className="flex">
           <div>
-            <h3>Hi, george!</h3>
+            <h3>Hi, {user?.name}!</h3>
             <h1 className="text-2xl mt-2">Discover Diffrent World</h1>
           </div>
           <div>
@@ -52,6 +55,9 @@ export default function Home() {
           </div>
           <input className="input" type="text" placeholder="Search destiations here" />
         </div>
+        <Link href="/trajects">
+          <button className="btn w-full my-2 text-sm">New Journey</button>
+        </Link>
       </div>
       <h1 className="text-xl mt-2">Recomended Locations</h1>
       <div className="flex flex-wrap">

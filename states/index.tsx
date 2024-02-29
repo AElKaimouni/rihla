@@ -68,18 +68,18 @@ export const AppContextProvider = ({ children } :Props) => {
         }
     };
 
-    // useEffect(() => {
-    //     if(!user) router.push("/login");
-    // }, [user]);
+    useEffect(() => {
+        if(user === null) router.push("/login");
+    }, [user]);
 
-    // useEffect(() => {
-    //     loader.process(async() => {
-    //         const user = await userAPi.auth();
+    useEffect(() => {
+        loader.process(async() => {
+            const user = await userAPi.auth();
 
-    //         if(user) context.controllers.user.login(user);
-    //         else context.controllers.user.logout();
-    //     });
-    // }, []);
+            if(user) context.controllers.user.login(user);
+            else context.controllers.user.logout();
+        });
+    }, []);
 
     useEffect(() => {
         if(loading === false) document.body.style.overflowY = "auto";
