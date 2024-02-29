@@ -29,4 +29,4 @@ jobs:
           docker build -t rihla . --no-cache
           docker stop rihla
           docker rm rihla
-          docker run --name rihla -p 3000:3000 rihla
+          docker run -d --name rihla -p 3000:3000 rihla
