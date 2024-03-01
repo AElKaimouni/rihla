@@ -177,9 +177,9 @@ export default function TrajectsPage({ params }) {
         {panel === 5 && (
           <div className="container mx-auto py-4 mt-12">
             <div>
-              {Object.keys(trip.plan).map((day, index) => (<>
+              {Object.keys(traject.plan).map((day, index) => (<>
                 <h2 key={index} className="text-2xl font-bold mb-4">Day {index + 1}</h2>
-                {trip.plan[day].activities.map((activity, index) => (
+                {traject.plan[day].activities.map((activity, index) => (
                   <div className="bg-white shadow-md rounded-md p-4 mb-4">
                     <h2 className="text-md font-semibold">{activity.name}</h2>
                     <span className="text-primary">{activity.price}</span>
