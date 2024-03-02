@@ -100,6 +100,11 @@ export const AppContextProvider = ({ children } :Props) => {
 
     return (
         <appContext.Provider value={context}>
+            {loading && (
+                <div className="flex h-screen items-center justify-center flex-col">
+                    <Loader />
+                </div>
+            )}
             {!loading && width <= 500 && children}
             {!loading && width > 500 && (
                 <div className="flex h-screen items-center justify-center flex-col">
@@ -107,11 +112,7 @@ export const AppContextProvider = ({ children } :Props) => {
                     <p className="text-2xl">This app is not responsive yet with big screens yet, please try it on your mobile or shrink your window</p>
                 </div>
             )}
-            {loading && (
-                <div className="flex h-screen items-center justify-center flex-col">
-                    <Loader />
-                </div>
-            )}
+
             <ul className="fixed bottom-0 right-0">
                 {notices.map(noticeObject => (
                     <li key={noticeObject.id} className={`rounded-lg duration-1000 transition-all ease-in-out bg-white shadow py-4 px-4 m-4 flex items-center ${noticeObject.animated ? "opacity-0" : ""}`}>

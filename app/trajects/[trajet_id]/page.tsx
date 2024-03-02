@@ -108,6 +108,7 @@ export default function TrajectsPage({ params }) {
       
       setGuides(g);
       setTraject(res);
+      console.log(res);
     });
   }, [])
 
@@ -119,10 +120,10 @@ export default function TrajectsPage({ params }) {
             <h1 className="text-center text-2xl p-4 px-8 text-gray-700">Our Propositions For Your Trip</h1>
             <ul className="flex flex-wrap">
                 {items.map((obj, index) => (
-                    <li onClick={() => setPanel(index)} className="p-4 basis-1/2 cursor-pointer" key={index}>
+                    <li onClick={() => setPanel(index)} className="p-4 basis-1/2 max-w-[50%] cursor-pointer" key={index}>
                         <div className={`p-4 bg-white flex flex-col items-center rounded-full  hover:bg-primary hover:text-gray-100`}>
                             <Image className="relative" src={obj.icon} alt={obj.title} width={75} height={75} style={{ transform: `scale(${obj.scale || 1})` }} />
-                            <h2 className="mt-2 text-lg">{obj.title}</h2>
+                            <h2 className="mt-2 text-lg whitespace-nowrap">{obj.title}</h2>
                         </div>
                     </li>
                 ))}
@@ -154,6 +155,21 @@ export default function TrajectsPage({ params }) {
           {panel === 2 && (
             <div className="container mx-auto py-4 mt-12">
               <div>
+                <h2 className="text-2xl font-bold mb-4">Restaurants</h2>
+                  {traject.restaurants.map((rest, index) => (
+                    <div key={index} className="bg-white shadow rounded-md p-4 mb-4">
+                      <h2 className="text-lg font-bold">{rest.nom}</h2>
+                      <p className="text-gray-600 px-2">{rest.adresse}</p>
+                      <p className="text-gray-600 px-2">Téléphone: {rest.numero_telephone}</p>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )} 
+
+          {panel === 3 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div>
                 <h2 className="text-2xl font-bold mb-4">Foods</h2>
                   {traject.food.map((food, index) => (
                       <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
@@ -163,36 +179,38 @@ export default function TrajectsPage({ params }) {
               </div>
             </div>
           )} 
+        
+          {panel === 4 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Tour Guides</h2>
+                {guides.map((guide, index) => <GuideComp guide={guide as any} key={index} />)}
+              </div>
+            </div>
+          )}
+
+          {panel === 5 && (
+            <div className="container mx-auto py-4 mt-12">
+              <div>
+                {Object.keys(traject.plan).map((day, index) => (<>
+                  <h2 key={index} className="text-2xl font-bold mb-4">Day {index + 1}</h2>
+                  {traject.plan[day].activities.map((activity, index) => (
+                    <div className="bg-white shadow-md rounded-md p-4 mb-4">
+                      <h2 className="text-md font-semibold">{activity.name}</h2>
+                      <span className="text-primary">{activity.price}</span>
+                      <p className="text-gray-700 text-sm">{activity.description}</p>
+                    </div>
+                  ))}
+
+                </>))}
+                
+                
+              </div>
+            </div>
+          )}
         </>}
 
-        {panel === 4 && (
-          <div className="container mx-auto py-4 mt-12">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Tour Guides</h2>
-              {guides.map((guide, index) => <GuideComp guide={guide as any} key={index} />)}
-            </div>
-          </div>
-        )}
 
-        {panel === 5 && (
-          <div className="container mx-auto py-4 mt-12">
-            <div>
-              {Object.keys(traject.plan).map((day, index) => (<>
-                <h2 key={index} className="text-2xl font-bold mb-4">Day {index + 1}</h2>
-                {traject.plan[day].activities.map((activity, index) => (
-                  <div className="bg-white shadow-md rounded-md p-4 mb-4">
-                    <h2 className="text-md font-semibold">{activity.name}</h2>
-                    <span className="text-primary">{activity.price}</span>
-                    <p className="text-gray-700 text-sm">{activity.description}</p>
-                  </div>
-                ))}
-
-              </>))}
-              
-              
-            </div>
-          </div>
-        )}
         {loading && <Loader />}
     </FormLayout>
   );
