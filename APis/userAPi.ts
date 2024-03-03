@@ -35,7 +35,7 @@ export default {
     },
     register: async ( name: string, email: string, password: string ) => {
         try {
-            await api.post("/register", { name, email, password });
+            await api.post("/Register/", { name, email, password });
 
 
         } catch(error) {
