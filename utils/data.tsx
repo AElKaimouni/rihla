@@ -476,3 +476,44 @@ export const cities = [
     "Safi",
     "Tetouan"
   ];
+
+export const hotels_images = [
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428503/9_qqaq1i.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428502/12_eggue0.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428496/20_vii1ek.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428484/15_bn2aoh.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428482/18_tpici5.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428482/19_mgop7y.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428473/16_tx6woa.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428470/17_ahktga.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428461/14_rlv0iz.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428460/13_gfykov.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428459/11_fmqvqq.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428457/4_p5o2bz.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428456/10_bnfvji.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428449/6_mbnvuw.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428449/7_iqqrfq.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428446/2_cshijp.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428444/1_ivujii.jpg"
+]
+
+export const resturants_images = [
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429106/20_crofmh.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429105/19_nm1l0i.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429101/10_uugnkp.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429094/18_lrjuvp.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429091/13_qrthn4.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429086/16_ccvg4q.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429082/17_onaack.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429079/7_szyy55.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429076/11_yhgqo4.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429074/15_nkikxl.webp",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429067/8_hpkbch.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429065/6_fylg5w.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429063/5_yfpplc.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429061/3_lapeyo.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709429060/1_tqg3st.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428532/5_kzagsy.png",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428502/12_eggue0.jpg",
+    "https://res.cloudinary.com/dbjw0a6fu/image/upload/v1709428484/15_bn2aoh.jpg"
+]

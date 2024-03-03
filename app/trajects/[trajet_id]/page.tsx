@@ -8,24 +8,42 @@ import Loader from "@/components/Loader";
 import Breadcrumps from "@/components/breadcumps";
 import FormLayout from "@/components/layouts/form";
 import { useLoader } from "@/utils";
-import { trip } from "@/utils/data";
+import { hotels_images, resturants_images, trip } from "@/utils/data";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-const HotelItem = ({ hotel }) => (
-  <div className="bg-white shadow rounded-md p-4 mb-4">
-    <h2 className="text-lg font-bold">{hotel.nom}</h2>
-    <p className="text-gray-600 px-2">{hotel.adresse}</p>
-    <p className="text-gray-600 px-2">Téléphone: {hotel.numero_telephone}</p>
+const random = Math.floor(Math.random() * 20);
+
+const HotelItem = ({ hotel, index }) => (
+  <div className="bg-white shadow rounded-md p-4 mb-4 flex">
+    <Image className="object-contain object-top mr-2" src={hotels_images[(random + index) % hotels_images.length]} width={100} height={100} alt="Hotel" />
+    <div className="grow">
+      <h2 className="text-lg font-bold">{hotel.nom}</h2>
+      <p className="text-gray-600 px-2">{hotel.adresse}</p>
+      <p className="text-gray-600 px-2">Téléphone: {hotel.numero_telephone}</p>
+    </div>
   </div>
 );
 
-const RestaurantItem = ({ restaurant }) => (
-  <div className="bg-white shadow-md rounded-md p-4 mb-4">
-    <h2 className="text-lg font-bold">{restaurant.nom}</h2>
-    <p className="text-gray-600">{restaurant.adresse}</p>
-    <p className="text-gray-600">Téléphone: {restaurant.numero_telephone}</p>
+const TransportItem = ({ trans }) => (
+  <div className="bg-white shadow rounded-md p-4 mb-4 flex">
+    <Image className="object-contain object-top mr-2" src={trans.picture} width={100} height={100} alt="Hotel" />
+    <div className="grow">
+      <h2 className="text-lg font-bold capitalize">{trans.transportType}</h2>
+      <p className="text-gray-600 text-xs px-2">{trans.description}</p>
+    </div>
+  </div>
+);
+
+const RestaurantItem = ({ restaurant, index }) => (
+  <div className="bg-white shadow rounded-md p-4 mb-4 flex">
+    <Image className="object-contain object-top mr-2" src={resturants_images[(random + index) % resturants_images.length]} width={100} height={100} alt="Hotel" />
+    <div className="grow">
+      <h2 className="text-lg font-bold">{restaurant.nom}</h2>
+      <p className="text-gray-600 px-2">{restaurant.adresse}</p>
+      <p className="text-gray-600 px-2">Téléphone: {restaurant.numero_telephone}</p>
+    </div>
   </div>
 );
 
@@ -72,8 +90,8 @@ const items = [
       icon: "/images/items/restaurant.png"
   },
   {
-    title: "Food",
-    icon: "/images/items/dining.png"
+    title: "Transportation",
+    icon: "/images/items/transport.png"
   },
   {
       title: "Tour Guides",
@@ -135,7 +153,7 @@ export default function TrajectsPage({ params }) {
               <div className="mb-8">
                   <h2 className="text-2xl font-bold mb-4">Hotels</h2>
                   {traject.hotels.map((hotel, index) => (
-                      <HotelItem key={index} hotel={hotel} />
+                      <HotelItem key={index} hotel={hotel} index={index} />
                   ))}
               </div>
             </div>
@@ -156,13 +174,7 @@ export default function TrajectsPage({ params }) {
             <div className="container mx-auto py-4 mt-12">
               <div>
                 <h2 className="text-2xl font-bold mb-4">Restaurants</h2>
-                  {traject.restaurants.map((rest, index) => (
-                    <div key={index} className="bg-white shadow rounded-md p-4 mb-4">
-                      <h2 className="text-lg font-bold">{rest.nom}</h2>
-                      <p className="text-gray-600 px-2">{rest.adresse}</p>
-                      <p className="text-gray-600 px-2">Téléphone: {rest.numero_telephone}</p>
-                    </div>
-                  ))}
+                  {traject.restaurants.map((rest, index) => <RestaurantItem restaurant={rest} key={index} index={index} />)}
               </div>
             </div>
           )} 
@@ -170,12 +182,8 @@ export default function TrajectsPage({ params }) {
           {panel === 3 && (
             <div className="container mx-auto py-4 mt-12">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Foods</h2>
-                  {traject.food.map((food, index) => (
-                      <div key={index} className="bg-white shadow-md rounded-md p-4 mb-4">
-                        <p className="text-gray-600 font-semibold">{food}</p>
-                      </div>
-                  ))}
+                <h2 className="text-2xl font-bold mb-4">Transportation</h2>
+                  {(traject as any).transports.map((trans, index) => <TransportItem trans={trans} key={index}/>)}
               </div>
             </div>
           )} 

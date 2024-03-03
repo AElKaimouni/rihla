@@ -206,14 +206,13 @@ function NewTrajectPage() {
     const validForm = useMemo(() => {
         return Boolean(city);
     }, [city]);
-    const [loading, loader] = useLoader();
+    const [loading, loader] = useLoader(true);
 
     const submit = () => loader.process(async () => {
         let obj = "Cultural", city = "";
 
         if(targetCity) {
             obj = "visit " + targetCity + " city";
-            city = targetCity;
         }
         if(activeMatch)  {
             const match = allMatches.find(m => m.id === activeMatch);
@@ -225,10 +224,11 @@ function NewTrajectPage() {
 
         const res = await trajectsAPi.new({
             budget,
-            city,
+            city: targetCity,
             number: adults + childs + 1,
             objectif: obj,
-            time: days + " days"
+            time: days + " days",
+            depart: city
         });
 
         router.push("/trajects/" + res.id);
@@ -239,7 +239,10 @@ function NewTrajectPage() {
             <div className="grow overflow-auto p-2 flex justify-center flex-col">
                 {!loading && <StepsPanel ctl={stepsPanelCtl} panels={panels} />}
                 {loading && <>
-                    <DotLottiePlayer className="min-h-full" src="/lotties/travel_animation.lottie" autoplay loop />
+                    <div className="flex flex-col items-center justify-center">
+                        <DotLottiePlayer className="min-h-full" src="/lotties/travel_animation.lottie" autoplay loop />
+                        <p className="text-center text-gray-700">Please wait while we generating your journey, this procces wont long more that 1 minute.</p>
+                    </div>
                 </>}
             </div>
             {!loading && <div className="flex px-8 py-4">
