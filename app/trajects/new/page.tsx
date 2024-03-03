@@ -209,7 +209,7 @@ function NewTrajectPage() {
     const [loading, loader] = useLoader();
 
     const submit = () => loader.process(async () => {
-        let obj = "Cultural", targetCity = "";
+        let obj = "Cultural", city = "";
 
         if(targetCity) {
             obj = "visit " + targetCity + " city";
@@ -217,7 +217,7 @@ function NewTrajectPage() {
         if(activeMatch)  {
             const match = allMatches.find(m => m.id === activeMatch);
 
-            targetCity = match.city;
+            city = match.city;
             // obj = "watch football match in " + match.city + " city of " + match.country1 + " vs " + match.country2;
             obj = "football";
         }
