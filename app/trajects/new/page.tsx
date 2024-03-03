@@ -209,7 +209,7 @@ function NewTrajectPage() {
     const [loading, loader] = useLoader();
 
     const submit = () => loader.process(async () => {
-        let obj = "Cultural", city = "";
+        let obj = "Cultural", city2 = city;
 
         if(targetCity) {
             obj = "visit " + targetCity + " city";
@@ -217,7 +217,7 @@ function NewTrajectPage() {
         if(activeMatch)  {
             const match = allMatches.find(m => m.id === activeMatch);
 
-            city = match.city;
+            city2 = match.city;
             // obj = "watch football match in " + match.city + " city of " + match.country1 + " vs " + match.country2;
             obj = "football";
         }
@@ -228,7 +228,7 @@ function NewTrajectPage() {
             number: adults + childs + 1,
             objectif: obj,
             time: days + " days",
-            depart: city
+            depart: city2
         });
 
         router.push("/trajects/" + res.id);
