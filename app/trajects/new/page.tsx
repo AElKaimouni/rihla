@@ -206,7 +206,7 @@ function NewTrajectPage() {
     const validForm = useMemo(() => {
         return Boolean(city);
     }, [city]);
-    const [loading, loader] = useLoader(true);
+    const [loading, loader] = useLoader();
 
     const submit = () => loader.process(async () => {
         let obj = "Cultural", city = "";
