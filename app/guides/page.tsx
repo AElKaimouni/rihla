@@ -15,7 +15,6 @@ export default function Guides() {
       .then((data) => setGuides(data))
       .catch((error) => console.log(error));
   }, []);
-
   return (
     <MainLayout className="p-4">
       <Breadcrumps title="Tour Guides" description="In this section you'll find all the guides that suits your needs" />

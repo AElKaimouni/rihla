@@ -24,7 +24,22 @@ export default {
   },
   getOneGuide: async (id: string): Promise<Guide> => {
     try {
-      const res = await api.get("/guides/" + id + "/");
+      const res = await api.get("/guide/" + id + "/");
+      return res.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 401) {
+        return null;
+      }
+      throw error;
+    }
+  },
+  sendEmailToGuide: async (email: string): Promise<void> => {
+    try {
+      const res = await api.get("/Mail/", {
+        params: {
+          email,
+        },
+      });
       return res.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response?.status === 401) {
