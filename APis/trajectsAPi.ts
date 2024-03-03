@@ -37,8 +37,6 @@ export default {
             const res = await api.post("/Traject/", data);
             await api.get("/Plan/");
 
-            console.log(data);
-
             const trasports = await api.get("/Transport/", { params: { depart: data.depart, target: data.city } });
 
             window.localStorage.setItem("traject_" + res.data.id, JSON.stringify([...trasports.data.transports, ...(trasports.data.trains?.[0] ? [
